@@ -27,7 +27,7 @@ export function CheckoutButton({
     setSimulationNotice(null);
 
     try {
-      // 1. Create checkout order authoritatively from server
+      // 1. Authoritative order initiation
       const orderRes = await fetch(`/api/v1/bookings/${bookingId}/checkout`, {
         method: 'POST',
       });
@@ -39,12 +39,11 @@ export function CheckoutButton({
 
       const order = orderData.data;
 
-      // 2. Check if running in live Razorpay mode or simulation mode
+      // 2. Check live vs sandbox mode
       if (order.is_sandbox_simulation) {
         setSimulationNotice(order.simulation_notice);
 
-        // Simulate checkout processing
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        await new Promise((resolve) => setTimeout(resolve, 1400));
 
         // Authoritative verification call
         const verifyRes = await fetch('/api/v1/payments/verify', {
@@ -67,11 +66,11 @@ export function CheckoutButton({
         setConfirmed(true);
         setTimeout(() => {
           router.push('/vendor/bookings');
-        }, 1500);
+        }, 1400);
         return;
       }
 
-      // Live Razorpay Script flow
+      // Live Razorpay script
       const options = {
         key: order.razorpay_key_id,
         amount: order.amount_paise,
@@ -107,7 +106,7 @@ export function CheckoutButton({
           contact: order.vendor_details.phone,
         },
         theme: {
-          color: '#4f46e5',
+          color: '#B95335',
         },
       };
 
@@ -116,8 +115,7 @@ export function CheckoutButton({
         const rzp = new razorpayWindow(options);
         rzp.open();
       } else {
-        // Fallback simulation if script is blocked or offline
-        setSimulationNotice('Razorpay modal script unavailable. Completing verified sandbox checkout.');
+        setSimulationNotice('Completing verified sandbox settlement.');
         const verifyRes = await fetch('/api/v1/payments/verify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -144,11 +142,11 @@ export function CheckoutButton({
 
   if (confirmed) {
     return (
-      <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-3">
-        <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-        <h3 className="text-lg font-bold text-emerald-900">Payment Verified!</h3>
-        <p className="text-xs text-emerald-700">
-          Your stall booking is confirmed. Redirecting to your digital passes...
+      <div className="p-6 bg-[#EFEAE1] border border-[#287653] rounded-xl text-center space-y-2">
+        <CheckCircle2 className="w-10 h-10 text-[#287653] mx-auto" />
+        <h3 className="text-base font-bold text-[#202A35]">Payment Verified!</h3>
+        <p className="text-xs text-[#747B80]">
+          Your stall booking is confirmed. Redirecting to your digital pass...
         </p>
       </div>
     );
@@ -157,14 +155,14 @@ export function CheckoutButton({
   return (
     <div className="space-y-4">
       {simulationNotice && (
-        <div className="p-3 bg-amber-50 border border-amber-200 text-amber-800 text-xs rounded-xl flex items-start gap-2">
-          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-amber-600" />
+        <div className="p-3 bg-[#EFEAE1] border border-[#94620B] text-[#94620B] text-xs rounded-lg flex items-start gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{simulationNotice}</span>
         </div>
       )}
 
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-start gap-2">
+        <div className="p-3 bg-[#F7F5F0] border border-[#B33A3A] text-[#B33A3A] text-xs rounded-lg flex items-start gap-2">
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{error}</span>
         </div>
@@ -173,29 +171,29 @@ export function CheckoutButton({
       <button
         onClick={handleCheckout}
         disabled={loading}
-        className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-base rounded-2xl shadow-xl shadow-indigo-600/25 transition-all flex items-center justify-center gap-3 disabled:opacity-50 cursor-pointer"
+        className="w-full py-3.5 bg-[#B95335] hover:bg-[#98432B] text-white font-bold text-sm rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer"
       >
         {loading ? (
           <>
-            <Loader2 className="w-5 h-5 animate-spin" />
+            <Loader2 className="w-4 h-4 animate-spin" />
             Connecting to Payment Gateway...
           </>
         ) : (
           <>
-            <CreditCard className="w-5 h-5" />
+            <CreditCard className="w-4 h-4" />
             Pay {formatPaiseToINR(totalAmountPaise)} via Razorpay
           </>
         )}
       </button>
 
-      <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400">
+      <div className="flex items-center justify-center gap-3 text-[11px] text-[#747B80]">
         <span className="flex items-center gap-1">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> 100% Encrypted
+          <ShieldCheck className="w-3.5 h-3.5 text-[#287653]" /> 100% Encrypted
         </span>
         <span>•</span>
-        <span>Instant Booking Voucher</span>
+        <span>Instant Digital Stall Pass</span>
         <span>•</span>
-        <span>Paise Precision Storage</span>
+        <span>Integer Paise Precision</span>
       </div>
     </div>
   );

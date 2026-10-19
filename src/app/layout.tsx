@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'EventLy | Event Stall Aggregator & Booking Platform',
+  title: 'EventLy | Curated Event Stall Aggregator & Booking Platform',
   description:
-    'Discover and book commercial stalls at verified lifestyle exhibitions, flea markets, and festivals across India. Verified organizers, transactional inventory holds, and secure Razorpay payment.',
+    'A curated marketplace connecting verified event organizers across India with artisanal and commercial stall vendors. Guaranteed inventory holds and secure Razorpay settlements.',
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-sans">
+      <body className="min-h-full flex flex-col bg-[#F7F5F0] text-[#202A35] font-sans selection:bg-[#B95335] selection:text-white">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

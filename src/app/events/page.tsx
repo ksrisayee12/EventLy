@@ -25,26 +25,29 @@ export default async function EventsPage({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Header */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-          Discover Verified Events & Stall Spaces
+      <div className="space-y-1 border-b border-[#E5E0D7] pb-4">
+        <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+          Exhibition Directory
+        </span>
+        <h1 className="text-3xl font-extrabold text-[#202A35] tracking-tight">
+          Discover Verified Exhibitions & Stall Spaces
         </h1>
-        <p className="text-sm text-slate-600">
-          Showing {events.length} published and approved events currently accepting vendor applications.
+        <p className="text-sm text-[#747B80]">
+          Showing {events.length} verified events across India currently accepting vendor applications.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+      <div className="bg-[#FFFFFF] p-5 rounded-2xl border border-[#E5E0D7] shadow-curated">
         <form method="GET" action="/events" className="grid grid-cols-1 md:grid-cols-4 gap-3">
           <div className="relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3.5" />
+            <Search className="w-4 h-4 text-[#747B80] absolute left-3.5 top-3" />
             <input
               type="text"
               name="search"
               defaultValue={search || ''}
-              placeholder="Search by event title or venue..."
-              className="w-full pl-9 pr-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Search by title or venue..."
+              className="w-full pl-10 pr-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
             />
           </div>
 
@@ -52,7 +55,7 @@ export default async function EventsPage({
             <select
               name="city"
               defaultValue={city || 'All Cities'}
-              className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
             >
               <option value="All Cities">All Cities</option>
               <option value="Bengaluru">Bengaluru</option>
@@ -65,11 +68,11 @@ export default async function EventsPage({
             <select
               name="category"
               defaultValue={category || 'All Categories'}
-              className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
             >
               <option value="All Categories">All Categories</option>
               <option value="Flea Market & Craft Expo">Flea Market & Craft</option>
-              <option value="Food & Beverage">Food & Beverage</option>
+              <option value="Food & Beverage">Food & Beverage Carnival</option>
               <option value="Apparel & Sustainable Fashion">Apparel & Fashion</option>
             </select>
           </div>
@@ -77,14 +80,14 @@ export default async function EventsPage({
           <div className="flex gap-2">
             <button
               type="submit"
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm rounded-xl py-2.5 px-4 shadow-sm transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              className="flex-1 bg-[#B95335] hover:bg-[#98432B] text-white font-semibold text-xs rounded-lg py-2 px-4 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
             >
-              <Filter className="w-4 h-4" />
-              Apply Filter
+              <Filter className="w-3.5 h-3.5" />
+              Apply Filters
             </button>
             <Link
               href="/events"
-              className="px-3 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold rounded-xl flex items-center justify-center transition-colors"
+              className="px-3.5 py-2 bg-[#EFEAE1] hover:bg-[#E5E0D7] text-[#202A35] text-xs font-semibold rounded-lg flex items-center justify-center transition-colors"
             >
               Reset
             </Link>
@@ -94,14 +97,14 @@ export default async function EventsPage({
 
       {/* Events Grid */}
       {events.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-2xl border border-slate-200 space-y-3">
-          <p className="text-base font-semibold text-slate-700">No events matched your search filters.</p>
-          <p className="text-xs text-slate-500">Try adjusting your city or category selection to find available stalls.</p>
+        <div className="text-center py-16 bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] p-8 space-y-3">
+          <p className="text-base font-semibold text-[#202A35]">No exhibitions matched your search criteria.</p>
+          <p className="text-xs text-[#747B80]">Try clearing or adjusting your city or category selection.</p>
           <Link
             href="/events"
-            className="inline-block mt-2 px-4 py-2 bg-indigo-600 text-white text-xs font-bold rounded-xl"
+            className="inline-block mt-2 px-4 py-2 bg-[#B95335] text-white text-xs font-semibold rounded-lg"
           >
-            Clear All Filters
+            Clear Filters
           </Link>
         </div>
       ) : (
@@ -109,72 +112,72 @@ export default async function EventsPage({
           {events.map((event) => (
             <div
               key={event.id}
-              className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all flex flex-col overflow-hidden"
+              className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] shadow-curated hover:border-[#64786B] transition-all flex flex-col justify-between overflow-hidden"
             >
-              {/* Event Poster / Header Badge */}
-              <div className="relative h-48 bg-gradient-to-br from-indigo-900 to-slate-800 p-5 flex flex-col justify-between text-white overflow-hidden">
+              {/* Event Header Graphic */}
+              <div className="relative h-48 bg-[#202A35] p-5 flex flex-col justify-between text-white overflow-hidden">
                 <div className="flex items-center justify-between relative z-10">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-white border border-white/20">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#202A35]/80 text-[#EFEAE1] border border-[#E5E0D7]/20">
                     {event.event_category}
                   </span>
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 backdrop-blur-md">
-                    <ShieldCheck className="w-3.5 h-3.5 mr-1 text-emerald-400" />
-                    Verified Event
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-[#287653] text-[#FFFFFF]">
+                    <ShieldCheck className="w-3.5 h-3.5 mr-1" />
+                    Verified
                   </span>
                 </div>
 
                 <div className="relative z-10">
-                  <span className="text-xs font-medium text-slate-300 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                  <span className="text-xs text-[#EFEAE1] flex items-center gap-1 font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-[#EFEAE1]" />
                     {formatDateOnly(event.starts_at)} – {formatDateOnly(event.ends_at)}
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-1 line-clamp-2 group-hover:text-indigo-200 transition-colors">
+                  <h3 className="text-lg font-bold text-[#FFFFFF] mt-1 line-clamp-2">
                     {event.title}
                   </h3>
                 </div>
               </div>
 
               {/* Event Details Body */}
-              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
-                  <div className="flex items-start gap-2 text-xs text-slate-600">
-                    <MapPin className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
-                    <span className="line-clamp-1 font-medium">
+                  <div className="flex items-start gap-2 text-xs text-[#747B80]">
+                    <MapPin className="w-4 h-4 text-[#B95335] shrink-0 mt-0.5" />
+                    <span className="font-medium text-[#202A35]">
                       {event.venue_name}, {event.city}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-[#747B80] line-clamp-2 leading-relaxed">
                     {event.description}
                   </p>
 
-                  {/* Footfall disclaimer */}
-                  <div className="bg-slate-50 border border-slate-100 rounded-xl p-2.5 flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-1.5 text-slate-700">
-                      <Users className="w-4 h-4 text-indigo-600" />
-                      <span className="font-semibold">{event.expected_footfall?.toLocaleString('en-IN')}+</span>
-                      <span className="text-slate-500">Est. Footfall</span>
+                  {/* Footfall Disclosure */}
+                  <div className="bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg p-2.5 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5 text-[#202A35]">
+                      <Users className="w-4 h-4 text-[#64786B]" />
+                      <span className="font-bold">{event.expected_footfall?.toLocaleString('en-IN')}+</span>
+                      <span className="text-[#747B80]">Est. Footfall</span>
                     </div>
-                    <span className="text-[10px] text-slate-400 italic">Organizer estimate</span>
+                    <span className="text-[10px] text-[#747B80] italic">Organizer estimate</span>
                   </div>
                 </div>
 
                 {/* Card Footer CTA */}
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-[#E5E0D7] flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-semibold">
+                    <span className="text-[10px] text-[#747B80] uppercase tracking-wider block font-semibold">
                       Stall Pricing From
                     </span>
-                    <span className="text-base font-extrabold text-indigo-700">
+                    <span className="text-base font-bold text-[#202A35]">
                       {formatPaiseToINR(1200000)}
                     </span>
                   </div>
 
                   <Link
                     href={`/events/${event.id}`}
-                    className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all"
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs font-semibold text-white bg-[#B95335] hover:bg-[#98432B] transition-colors"
                   >
-                    View & Apply
+                    View Details
                     <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
                 </div>

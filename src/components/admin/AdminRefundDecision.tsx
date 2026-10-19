@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, X, Loader2 } from 'lucide-react';
+import { Check, Loader2 } from 'lucide-react';
 
 export function AdminRefundDecision({
   refundId,
@@ -18,10 +18,10 @@ export function AdminRefundDecision({
   if (currentStatus !== 'requested' && currentStatus !== 'under_review') {
     return (
       <span
-        className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
+        className={`px-2.5 py-1 rounded text-xs font-bold uppercase ${
           currentStatus === 'succeeded' || currentStatus === 'approved'
-            ? 'bg-emerald-100 text-emerald-800'
-            : 'bg-red-100 text-red-800'
+            ? 'bg-[#EFEAE1] text-[#287653] border border-[#E5E0D7]'
+            : 'bg-[#EFEAE1] text-[#B33A3A] border border-[#E5E0D7]'
         }`}
       >
         {currentStatus}
@@ -51,7 +51,7 @@ export function AdminRefundDecision({
       <button
         onClick={() => handleDecision('approved')}
         disabled={loading}
-        className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm flex items-center gap-1 cursor-pointer disabled:opacity-50"
+        className="px-3 py-1.5 bg-[#287653] hover:bg-[#1E5A3F] text-white font-semibold text-xs rounded-lg flex items-center gap-1 cursor-pointer disabled:opacity-50 transition-colors"
       >
         {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
         Authorize Refund
@@ -60,7 +60,7 @@ export function AdminRefundDecision({
       <button
         onClick={() => handleDecision('rejected')}
         disabled={loading}
-        className="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 hover:bg-red-50 hover:text-red-600 text-xs font-semibold rounded-xl cursor-pointer disabled:opacity-50"
+        className="px-3 py-1.5 bg-[#FFFFFF] border border-[#E5E0D7] text-[#202A35] hover:bg-[#F7F5F0] hover:text-[#B33A3A] text-xs font-medium rounded-lg cursor-pointer disabled:opacity-50 transition-colors"
       >
         Decline
       </button>

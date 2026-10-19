@@ -47,41 +47,41 @@ export function RefundForm({ bookings }: { bookings: Booking[] }) {
 
   if (bookings.length === 0) {
     return (
-      <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-500 text-center">
+      <div className="p-4 bg-[#FFFFFF] border border-[#E5E0D7] rounded-xl text-xs text-[#747B80] text-center">
         No eligible confirmed bookings found to request a refund for.
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-3xl border border-slate-200 p-6 space-y-4 shadow-sm">
-      <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
-        <RotateCcw className="w-4 h-4 text-indigo-600" />
+    <form onSubmit={handleSubmit} className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] p-6 space-y-4 shadow-curated">
+      <h3 className="font-bold text-sm text-[#202A35] flex items-center gap-2 border-b border-[#E5E0D7] pb-3">
+        <RotateCcw className="w-4 h-4 text-[#B95335]" />
         Submit Cancellation / Refund Request
       </h3>
 
       {success && (
-        <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="p-3 bg-[#EFEAE1] border border-[#287653] text-[#287653] text-xs rounded-lg flex items-center gap-2">
+          <CheckCircle2 className="w-4 h-4 text-[#287653] shrink-0" />
           <span>Refund request submitted to platform admin for policy review.</span>
         </div>
       )}
 
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-center gap-2">
+        <div className="p-3 bg-[#F7F5F0] border border-[#B33A3A] text-[#B33A3A] text-xs rounded-lg flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
       <div>
-        <label className="block text-xs font-bold text-slate-700 mb-1">
+        <label className="block text-xs font-semibold text-[#202A35] mb-1">
           Select Confirmed Booking
         </label>
         <select
           value={selectedBookingId}
           onChange={(e) => setSelectedBookingId(e.target.value)}
-          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500"
+          className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
         >
           {bookings.map((b) => (
             <option key={b.id} value={b.id}>
@@ -92,13 +92,13 @@ export function RefundForm({ bookings }: { bookings: Booking[] }) {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-700 mb-1">
+        <label className="block text-xs font-semibold text-[#202A35] mb-1">
           Reason for Cancellation
         </label>
         <select
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500"
+          className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
         >
           <option value="Medical emergency / Unforeseen circumstance">
             Medical emergency / Unforeseen circumstance
@@ -118,7 +118,7 @@ export function RefundForm({ bookings }: { bookings: Booking[] }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+        className="w-full py-2.5 bg-[#202A35] hover:bg-[#141A22] text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
       >
         {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Submit Refund Request for Review'}
       </button>

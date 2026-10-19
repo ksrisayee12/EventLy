@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Trash2, Calendar, MapPin, Loader2, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Plus, Trash2, Loader2, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 import { rupeesToPaise } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -33,7 +33,7 @@ export default function NewEventPage() {
   const [endsAt, setEndsAt] = useState('');
   const [expectedFootfall, setExpectedFootfall] = useState(5000);
   const [termsText, setTermsText] = useState(
-    'Standard 5A power plug included. No plastic bags allowed. Setup strictly between 7:00 AM - 9:30 AM.'
+    'Standard 5A electrical point provided. No single-use plastic permitted. Setup strictly between 7:00 AM - 9:30 AM.'
   );
 
   // Multi-tier stall categories
@@ -117,7 +117,7 @@ export default function NewEventPage() {
       if (!res.ok) throw new Error(data.error?.message || 'Failed to create event');
 
       setSuccess(true);
-      setTimeout(() => router.push('/organizer'), 1500);
+      setTimeout(() => router.push('/organizer'), 1400);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -129,29 +129,32 @@ export default function NewEventPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       <Link
         href="/organizer"
-        className="inline-flex items-center text-xs font-semibold text-slate-500 hover:text-indigo-600 gap-1"
+        className="inline-flex items-center text-xs font-semibold text-[#747B80] hover:text-[#B95335] gap-1 transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" /> Back to Organizer Hub
       </Link>
 
-      <div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          List a New Event for Verification
+      <div className="border-b border-[#E5E0D7] pb-4">
+        <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+          New Listing
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#202A35] tracking-tight mt-0.5">
+          List a New Exhibition for Verification
         </h1>
-        <p className="text-sm text-slate-600 mt-1">
-          Submit comprehensive event specifications, footfall estimate, and stall capacity tiers.
+        <p className="text-sm text-[#747B80]">
+          Define exhibition details, expected visitor footfall, and multi-tier stall spaces.
         </p>
       </div>
 
       {success && (
-        <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm rounded-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-          <span>Event submitted successfully! Redirecting to organizer hub...</span>
+        <div className="p-4 bg-[#EFEAE1] border border-[#287653] text-[#287653] text-sm rounded-xl flex items-center gap-3">
+          <CheckCircle2 className="w-5 h-5 text-[#287653] shrink-0" />
+          <span>Exhibition submitted successfully! Redirecting to organizer hub...</span>
         </div>
       )}
 
       {error && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded-2xl flex items-center gap-3">
+        <div className="p-4 bg-[#F7F5F0] border border-[#B33A3A] text-[#B33A3A] text-sm rounded-xl flex items-center gap-3">
           <AlertCircle className="w-5 h-5 shrink-0" />
           <span>{error}</span>
         </div>
@@ -159,30 +162,30 @@ export default function NewEventPage() {
 
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Step 1: Basic Event Information */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">
-            1. Event Information
+        <div className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] shadow-curated p-6 sm:p-8 space-y-4">
+          <h2 className="text-base font-bold text-[#202A35] border-b border-[#E5E0D7] pb-2.5">
+            1. Exhibition Overview
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-slate-700 mb-1">Event Title *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Exhibition Title *</label>
               <input
                 type="text"
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. Hyderabad Spring Flea & Food Carnival 2026"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                placeholder="e.g. Pune Spring Artisan & Crafts Carnival 2026"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Category *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Exhibition Category *</label>
               <select
                 value={eventCategory}
                 onChange={(e) => setEventCategory(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               >
                 <option value="Flea Market & Craft Expo">Flea Market & Craft Expo</option>
                 <option value="Food & Beverage">Food & Beverage Carnival</option>
@@ -192,7 +195,7 @@ export default function NewEventPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">
                 Estimated Visitor Footfall *
               </label>
               <input
@@ -201,106 +204,106 @@ export default function NewEventPage() {
                 required
                 value={expectedFootfall}
                 onChange={(e) => setExpectedFootfall(Number(e.target.value))}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-slate-700 mb-1">Description *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Description *</label>
               <textarea
                 required
                 rows={3}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Detailed summary of the festival, live attractions, target demographic..."
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500"
+                placeholder="Describe the curation, target demographic, and live attractions..."
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
           </div>
         </div>
 
         {/* Step 2: Venue and Dates */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-4">
-          <h2 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2">
-            2. Venue & Dates
+        <div className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] shadow-curated p-6 sm:p-8 space-y-4">
+          <h2 className="text-base font-bold text-[#202A35] border-b border-[#E5E0D7] pb-2.5">
+            2. Venue & Schedule
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Venue Name *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Venue Name *</label>
               <input
                 type="text"
                 required
                 value={venueName}
                 onChange={(e) => setVenueName(e.target.value)}
-                placeholder="e.g. Hitex Exhibition Center"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                placeholder="e.g. Royal Palms Exhibition Pavilion"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">City *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">City *</label>
               <input
                 type="text"
                 required
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="e.g. Hyderabad"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                placeholder="e.g. Pune"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-xs font-bold text-slate-700 mb-1">Full Street Address *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Full Street Address *</label>
               <input
                 type="text"
                 required
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="e.g. Trade Fair Office Building, Izzat Nagar, Madhapur"
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                placeholder="e.g. Koregaon Park Annexe, North Main Road"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Event Starts At *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Exhibition Starts At *</label>
               <input
                 type="datetime-local"
                 required
                 value={startsAt}
                 onChange={(e) => setStartsAt(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1">Event Ends At *</label>
+              <label className="block text-xs font-semibold text-[#202A35] mb-1">Exhibition Ends At *</label>
               <input
                 type="datetime-local"
                 required
                 value={endsAt}
                 onChange={(e) => setEndsAt(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-sm text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
               />
             </div>
           </div>
         </div>
 
         {/* Step 3: Multi-Tier Stall Categories */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+        <div className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] shadow-curated p-6 sm:p-8 space-y-4">
+          <div className="flex items-center justify-between border-b border-[#E5E0D7] pb-2.5">
             <div>
-              <h2 className="text-lg font-bold text-slate-900">3. Stall Categories & Pricing</h2>
-              <p className="text-xs text-slate-500">
+              <h2 className="text-base font-bold text-[#202A35]">3. Stall Categories & Capacity</h2>
+              <p className="text-xs text-[#747B80]">
                 Define distinct stall sizes, inclusions, capacity, and pricing in INR.
               </p>
             </div>
             <button
               type="button"
               onClick={addStallTier}
-              className="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#EFEAE1] text-[#202A35] hover:bg-[#E5E0D7] rounded-lg text-xs font-semibold transition-colors cursor-pointer"
             >
-              <Plus className="w-3.5 h-3.5" /> Add Tier
+              <Plus className="w-3.5 h-3.5" /> Add Category
             </button>
           </div>
 
@@ -308,17 +311,17 @@ export default function NewEventPage() {
             {stallTiers.map((tier, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-2xl border border-slate-200 bg-slate-50 space-y-3 relative"
+                className="p-4 rounded-xl border border-[#E5E0D7] bg-[#F7F5F0] space-y-3 relative"
               >
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-700">
-                    Tier #{idx + 1}
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#B95335]">
+                    Category Tier #{idx + 1}
                   </span>
                   {stallTiers.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeStallTier(idx)}
-                      className="text-red-500 hover:text-red-700 p-1"
+                      className="text-[#B33A3A] hover:text-[#8F2E2E] p-1"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -327,20 +330,20 @@ export default function NewEventPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
                   <div className="sm:col-span-2">
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                      Tier Name (e.g. Standard 6x6)
+                    <label className="block text-[11px] font-semibold text-[#202A35] mb-1">
+                      Category Name (e.g. Standard 6x6)
                     </label>
                     <input
                       type="text"
                       required
                       value={tier.name}
                       onChange={(e) => updateStallTier(idx, 'name', e.target.value)}
-                      className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs"
+                      className="w-full px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                    <label className="block text-[11px] font-semibold text-[#202A35] mb-1">
                       Price (₹ INR)
                     </label>
                     <input
@@ -349,12 +352,12 @@ export default function NewEventPage() {
                       required
                       value={tier.price_rupees}
                       onChange={(e) => updateStallTier(idx, 'price_rupees', e.target.value)}
-                      className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold"
+                      className="w-full px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E5E0D7] rounded-lg text-xs font-semibold text-[#202A35]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                    <label className="block text-[11px] font-semibold text-[#202A35] mb-1">
                       Total Capacity
                     </label>
                     <input
@@ -363,19 +366,19 @@ export default function NewEventPage() {
                       required
                       value={tier.total_capacity}
                       onChange={(e) => updateStallTier(idx, 'total_capacity', e.target.value)}
-                      className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold"
+                      className="w-full px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E5E0D7] rounded-lg text-xs font-semibold text-[#202A35]"
                     />
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
+                    <label className="block text-[11px] font-semibold text-[#202A35] mb-1">
                       Inclusions & Dimension Details
                     </label>
                     <input
                       type="text"
                       value={tier.description}
                       onChange={(e) => updateStallTier(idx, 'description', e.target.value)}
-                      className="w-full px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs"
+                      className="w-full px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35]"
                     />
                   </div>
                 </div>
@@ -384,14 +387,14 @@ export default function NewEventPage() {
           </div>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Action */}
         <div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-base rounded-2xl shadow-xl shadow-indigo-600/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3.5 bg-[#B95335] hover:bg-[#98432B] text-white font-bold text-sm rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
           >
-            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Submit Event for Admin Review'}
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Submit Exhibition for Admin Verification'}
           </button>
         </div>
       </form>

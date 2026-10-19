@@ -10,10 +10,10 @@ import {
   ShieldCheck, 
   Clock, 
   CreditCard, 
-  Sparkles, 
-  CheckCircle2, 
-  Search,
-  Store 
+  Search, 
+  CheckCircle2,
+  Store,
+  Sparkles
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -22,175 +22,193 @@ export default async function HomePage() {
   const events = await DataService.getPublicEvents();
 
   return (
-    <div className="space-y-16 pb-20">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-indigo-900 via-slate-900 to-slate-900 text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] pointer-events-none" />
-
-        <div className="max-w-5xl mx-auto text-center relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>India&apos;s First Verified Event Stall Marketplace</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-            Discover & Book Commercial Stalls at{' '}
-            <span className="bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
-              Verified Events Across India
-            </span>
-          </h1>
-
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-            Directly connect with vetted event organizers. Browse stall types with transparent pricing, apply with 1-click, and secure your spot with guaranteed inventory holds.
-          </p>
-
-          {/* Quick Search & Filter Bar */}
-          <div className="max-w-3xl mx-auto mt-8 p-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
-            <form action="/events" method="GET" className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              <div className="relative">
-                <select
-                  name="city"
-                  className="w-full bg-slate-800/90 text-white text-sm rounded-xl px-3 py-3 border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                >
-                  <option value="All Cities">All Cities</option>
-                  <option value="Bengaluru">Bengaluru</option>
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="New Delhi">New Delhi</option>
-                </select>
+    <div className="space-y-16 pb-24">
+      {/* Editorial Exhibition Hero */}
+      <section className="relative bg-[#FFFFFF] border-b border-[#E5E0D7] pt-16 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Headline & Supporting Copy */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#EFEAE1] text-[#64786B] border border-[#E5E0D7]">
+                <Sparkles className="w-3.5 h-3.5 text-[#B95335]" />
+                <span>The Curated Marketplace for Event Stalls</span>
               </div>
 
-              <div className="relative">
-                <select
-                  name="category"
-                  className="w-full bg-slate-800/90 text-white text-sm rounded-xl px-3 py-3 border border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                >
-                  <option value="All Categories">All Categories</option>
-                  <option value="Flea Market & Craft Expo">Flea Market & Craft</option>
-                  <option value="Food & Beverage">Food & Beverage</option>
-                  <option value="Apparel & Sustainable Fashion">Apparel & Fashion</option>
-                </select>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#202A35] leading-[1.12]">
+                Book commercial stalls at{' '}
+                <span className="text-[#B95335]">
+                  verified cultural expos
+                </span>{' '}
+                & lifestyle festivals.
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#747B80] leading-relaxed max-w-xl font-normal">
+                Directly connect with vetted event organizers across India. Apply with your brand portfolio, lock in your stall with a 30-minute guaranteed hold, and pay securely via Razorpay.
+              </p>
+
+              {/* Trust Indicators */}
+              <div className="pt-2 flex flex-wrap items-center gap-6 text-xs font-medium text-[#747B80]">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-[#287653]" />
+                  Direct Organizer Verification
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4 text-[#B95335]" />
+                  30-Min Protected Inventory Hold
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CreditCard className="w-4 h-4 text-[#64786B]" />
+                  Secure Razorpay Settlements
+                </span>
               </div>
+            </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-sky-500 hover:from-indigo-600 hover:to-sky-600 text-white font-semibold text-sm rounded-xl py-3 px-4 shadow-lg shadow-indigo-500/30 transition-all cursor-pointer"
-              >
-                <Search className="w-4 h-4" />
-                Find Stalls
-              </button>
-            </form>
-          </div>
+            {/* Right Search & Filter Card */}
+            <div className="lg:col-span-5">
+              <div className="bg-[#F7F5F0] rounded-2xl border border-[#E5E0D7] p-6 sm:p-7 shadow-curated space-y-5">
+                <div>
+                  <h3 className="text-base font-bold text-[#202A35]">Find Upcoming Exhibitions</h3>
+                  <p className="text-xs text-[#747B80] mt-0.5">
+                    Filter by city and category to discover open stall spaces.
+                  </p>
+                </div>
 
-          {/* Trust Highlights */}
-          <div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              Verified Event Organizers
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-sky-400" />
-              30-Min Protected Inventory Hold
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CreditCard className="w-4 h-4 text-purple-400" />
-              Safe Razorpay Payments
-            </span>
+                <form action="/events" method="GET" className="space-y-3.5">
+                  <div>
+                    <label className="block text-xs font-semibold text-[#202A35] mb-1">
+                      Exhibition City
+                    </label>
+                    <select
+                      name="city"
+                      className="w-full bg-[#FFFFFF] text-[#202A35] text-sm rounded-lg px-3.5 py-2.5 border border-[#E5E0D7] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
+                    >
+                      <option value="All Cities">All Cities (India)</option>
+                      <option value="Bengaluru">Bengaluru</option>
+                      <option value="Mumbai">Mumbai</option>
+                      <option value="New Delhi">New Delhi</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-[#202A35] mb-1">
+                      Vendor Category
+                    </label>
+                    <select
+                      name="category"
+                      className="w-full bg-[#FFFFFF] text-[#202A35] text-sm rounded-lg px-3.5 py-2.5 border border-[#E5E0D7] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
+                    >
+                      <option value="All Categories">All Exhibition Categories</option>
+                      <option value="Flea Market & Craft Expo">Flea Market & Craft</option>
+                      <option value="Food & Beverage">Food & Beverage Carnival</option>
+                      <option value="Apparel & Sustainable Fashion">Apparel & Sustainable Fashion</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 bg-[#B95335] hover:bg-[#98432B] text-white font-semibold text-sm rounded-lg py-3 px-4 transition-colors cursor-pointer"
+                  >
+                    <Search className="w-4 h-4" />
+                    Discover Available Stalls
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Events Section */}
+      {/* Featured Exhibitions Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 border-b border-[#E5E0D7] pb-4">
           <div>
-            <div className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-1">
-              <span>Featured Listings</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-              Curated Events Accepting Vendor Stalls
+            <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+              Curated Selection
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#202A35] tracking-tight mt-0.5">
+              Featured Exhibitions Accepting Applications
             </h2>
           </div>
           <Link
             href="/events"
-            className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+            className="inline-flex items-center text-sm font-semibold text-[#B95335] hover:text-[#98432B] transition-colors"
           >
-            Explore all events
+            Explore all exhibitions
             <ArrowRight className="w-4 h-4 ml-1" />
           </Link>
         </div>
 
-        {/* Event Cards Grid */}
+        {/* Exhibition Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event) => (
             <div
               key={event.id}
-              className="group bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-200 transition-all flex flex-col overflow-hidden"
+              className="bg-[#FFFFFF] rounded-2xl border border-[#E5E0D7] shadow-curated hover:border-[#64786B] transition-all flex flex-col justify-between overflow-hidden"
             >
-              {/* Event Poster / Header Badge */}
-              <div className="relative h-48 bg-gradient-to-br from-indigo-900 to-slate-800 p-5 flex flex-col justify-between text-white overflow-hidden">
-                <div className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:scale-105 transition-transform duration-500" />
+              {/* Event Image Top */}
+              <div className="relative h-48 bg-[#202A35] p-5 flex flex-col justify-between text-white overflow-hidden">
                 <div className="flex items-center justify-between relative z-10">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-white border border-white/20">
+                  <span className="px-2.5 py-1 rounded-md text-[11px] font-semibold bg-[#202A35]/80 text-[#EFEAE1] border border-[#E5E0D7]/20">
                     {event.event_category}
                   </span>
-                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 backdrop-blur-md">
-                    <ShieldCheck className="w-3.5 h-3.5 mr-1 text-emerald-400" />
-                    Verified Event
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium bg-[#287653] text-[#FFFFFF]">
+                    <ShieldCheck className="w-3.5 h-3.5 mr-1" />
+                    Verified
                   </span>
                 </div>
 
                 <div className="relative z-10">
-                  <span className="text-xs font-medium text-slate-300 flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                  <span className="text-xs text-[#EFEAE1] flex items-center gap-1 font-medium">
+                    <Calendar className="w-3.5 h-3.5 text-[#EFEAE1]" />
                     {formatDateOnly(event.starts_at)} – {formatDateOnly(event.ends_at)}
                   </span>
-                  <h3 className="text-lg font-bold text-white mt-1 line-clamp-2 group-hover:text-indigo-200 transition-colors">
+                  <h3 className="text-lg font-bold text-[#FFFFFF] mt-1 line-clamp-2">
                     {event.title}
                   </h3>
                 </div>
               </div>
 
-              {/* Event Details Body */}
-              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+              {/* Event Info Body */}
+              <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-3">
-                  <div className="flex items-start gap-2 text-xs text-slate-600">
-                    <MapPin className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
-                    <span className="line-clamp-1 font-medium">
+                  <div className="flex items-start gap-2 text-xs text-[#747B80]">
+                    <MapPin className="w-4 h-4 text-[#B95335] shrink-0 mt-0.5" />
+                    <span className="font-medium text-[#202A35]">
                       {event.venue_name}, {event.city}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-[#747B80] line-clamp-2 leading-relaxed">
                     {event.description}
                   </p>
 
-                  {/* Footfall disclaimer */}
-                  <div className="bg-slate-50 border border-slate-100 rounded-xl p-2.5 flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-1.5 text-slate-700">
-                      <Users className="w-4 h-4 text-indigo-600" />
-                      <span className="font-semibold">{event.expected_footfall?.toLocaleString('en-IN')}+</span>
-                      <span className="text-slate-500">Est. Footfall</span>
+                  {/* Footfall Disclosure */}
+                  <div className="bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg p-2.5 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5 text-[#202A35]">
+                      <Users className="w-4 h-4 text-[#64786B]" />
+                      <span className="font-bold">{event.expected_footfall?.toLocaleString('en-IN')}+</span>
+                      <span className="text-[#747B80]">Est. Footfall</span>
                     </div>
-                    <span className="text-[10px] text-slate-400 italic">Organizer estimate</span>
+                    <span className="text-[10px] text-[#747B80] italic">Organizer estimate</span>
                   </div>
                 </div>
 
-                {/* Card Footer CTA */}
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                {/* Pricing & CTA Footer */}
+                <div className="pt-4 border-t border-[#E5E0D7] flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider block font-semibold">
+                    <span className="text-[10px] text-[#747B80] uppercase tracking-wider block font-semibold">
                       Stall Pricing From
                     </span>
-                    <span className="text-base font-extrabold text-indigo-700">
+                    <span className="text-base font-bold text-[#202A35]">
                       {formatPaiseToINR(1200000)}
                     </span>
                   </div>
 
                   <Link
                     href={`/events/${event.id}`}
-                    className="inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition-all"
+                    className="inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs font-semibold text-white bg-[#B95335] hover:bg-[#98432B] transition-colors"
                   >
-                    View & Apply
+                    View Details
                     <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Link>
                 </div>
@@ -200,59 +218,59 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* How it Works Section */}
-      <section className="bg-white border-y border-slate-200 py-16 px-4 sm:px-6 lg:px-8">
+      {/* How it Works - 4 Step Editorial Process */}
+      <section className="bg-[#FFFFFF] border-y border-[#E5E0D7] py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600">
-              Application-First Model
+          <div className="text-center space-y-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+              The Application-First Workflow
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-              How Stall Booking Works on EventLy
+            <h2 className="text-3xl font-extrabold text-[#202A35] tracking-tight">
+              Transparent Curation. Guaranteed Holds.
             </h2>
-            <p className="text-sm text-slate-600 max-w-xl mx-auto">
-              We ensure transparent curation for event organizers while protecting vendor payments with time-limited inventory holds.
+            <p className="text-sm text-[#747B80] max-w-xl mx-auto">
+              We eliminate unverified middlemen and WhatsApp chaos. You apply, get approved by the organizer, and lock in your stall with an atomic 30-minute hold before paying.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 text-center space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg mx-auto">
+            <div className="p-6 rounded-xl bg-[#F7F5F0] border border-[#E5E0D7] space-y-3">
+              <div className="w-8 h-8 rounded-md bg-[#202A35] text-[#F7F5F0] flex items-center justify-center font-bold text-sm">
                 1
               </div>
-              <h3 className="font-bold text-slate-900 text-sm">Discover & Apply</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Browse verified events, select your stall category, and submit your brand details without upfront payment.
+              <h3 className="font-bold text-[#202A35] text-sm">Discover & Apply</h3>
+              <p className="text-xs text-[#747B80] leading-relaxed">
+                Browse verified events and choose your stall category. Submit brand details with zero upfront payment.
               </p>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 text-center space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg mx-auto">
+            <div className="p-6 rounded-xl bg-[#F7F5F0] border border-[#E5E0D7] space-y-3">
+              <div className="w-8 h-8 rounded-md bg-[#202A35] text-[#F7F5F0] flex items-center justify-center font-bold text-sm">
                 2
               </div>
-              <h3 className="font-bold text-slate-900 text-sm">Organizer Review</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                The organizer reviews your products to maintain event quality and approves your application.
+              <h3 className="font-bold text-[#202A35] text-sm">Organizer Review</h3>
+              <p className="text-xs text-[#747B80] leading-relaxed">
+                The organizer reviews your product lineup to ensure strong event curation, approving or declining with feedback.
               </p>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 text-center space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg mx-auto">
+            <div className="p-6 rounded-xl bg-[#F7F5F0] border border-[#E5E0D7] space-y-3">
+              <div className="w-8 h-8 rounded-md bg-[#B95335] text-[#FFFFFF] flex items-center justify-center font-bold text-sm">
                 3
               </div>
-              <h3 className="font-bold text-slate-900 text-sm">30-Min Protected Hold</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Upon approval, an atomic hold reserves the stall capacity for 30 minutes so it cannot be sold to anyone else.
+              <h3 className="font-bold text-[#202A35] text-sm">30-Minute Hold</h3>
+              <p className="text-xs text-[#747B80] leading-relaxed">
+                Upon approval, an atomic database lock reserves your stall for 30 minutes so it cannot be oversold.
               </p>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 text-center space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg mx-auto">
+            <div className="p-6 rounded-xl bg-[#F7F5F0] border border-[#E5E0D7] space-y-3">
+              <div className="w-8 h-8 rounded-md bg-[#287653] text-[#FFFFFF] flex items-center justify-center font-bold text-sm">
                 4
               </div>
-              <h3 className="font-bold text-slate-900 text-sm">Razorpay Checkout</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Complete payment securely. The server verifies the signature and confirms your booking voucher immediately.
+              <h3 className="font-bold text-[#202A35] text-sm">Razorpay Checkout</h3>
+              <p className="text-xs text-[#747B80] leading-relaxed">
+                Pay securely online. Server signature verification immediately confirms your booking voucher.
               </p>
             </div>
           </div>
@@ -263,73 +281,63 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* For Organizers */}
-          <div className="bg-gradient-to-br from-indigo-950 to-slate-900 text-white p-8 rounded-3xl border border-indigo-900 shadow-xl space-y-6 flex flex-col justify-between">
+          <div className="bg-[#202A35] text-[#F7F5F0] p-8 rounded-2xl border border-[#2E3A47] space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-400/20">
-                <Store className="w-3.5 h-3.5" />
-                <span>For Event Organizers</span>
-              </div>
-              <h3 className="text-2xl font-bold">List Your Event & Reach Verified Vendors</h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Stop managing vendor bookings across WhatsApp and spreadsheets. Create multi-tier stall spaces, review vendor portfolios, and receive direct payments with automated capacity tracking.
+              <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+                For Event Organizers
+              </span>
+              <h3 className="text-2xl font-bold text-[#FFFFFF]">Curate & Fill Your Commercial Stalls</h3>
+              <p className="text-sm text-[#A3ABB2] leading-relaxed">
+                List multi-tier stall categories with custom dimensions and electrical specs. Review vendor portfolios in a dedicated curation dashboard with automated capacity tracking.
               </p>
-              <ul className="space-y-2 text-xs text-slate-300">
+              <ul className="space-y-2 text-xs text-[#EFEAE1]">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Custom stall tiers with custom dimensions and electrical inclusions
+                  <CheckCircle2 className="w-4 h-4 text-[#64786B]" />
+                  Multi-tier stall options with customized pricing & capacity
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Curation dashboard to accept or reject applicant brands
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Real-time booking confirmations and revenue reporting
+                  <CheckCircle2 className="w-4 h-4 text-[#64786B]" />
+                  Curation queue with 1-click approvals and automated reservation holds
                 </li>
               </ul>
             </div>
 
             <Link
               href="/organizer/events/new"
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-bold text-sm bg-white text-indigo-950 hover:bg-slate-100 transition-colors shadow-lg"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-lg font-bold text-xs bg-[#B95335] hover:bg-[#98432B] text-white transition-colors"
             >
-              Submit an Event for Verification
+              List an Exhibition
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Link>
           </div>
 
           {/* For Vendors */}
-          <div className="bg-gradient-to-br from-sky-950 to-slate-900 text-white p-8 rounded-3xl border border-sky-900 shadow-xl space-y-6 flex flex-col justify-between">
+          <div className="bg-[#EFEAE1] text-[#202A35] p-8 rounded-2xl border border-[#E5E0D7] space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-300 border border-sky-400/20">
-                <Users className="w-3.5 h-3.5" />
-                <span>For Commercial & Artisan Vendors</span>
-              </div>
-              <h3 className="text-2xl font-bold">Sell at Top Flea Markets & Exhibitions</h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Find verified exhibitions in your city. Apply with your brand profile, avoid unverified middlemen, and lock in your stall with safe transactional reservations.
+              <span className="text-xs font-bold uppercase tracking-wider text-[#64786B]">
+                For Commercial & Artisan Vendors
+              </span>
+              <h3 className="text-2xl font-bold text-[#202A35]">Showcase at Premier Lifestyle Events</h3>
+              <p className="text-sm text-[#747B80] leading-relaxed">
+                Discover verified exhibitions in your city. Apply with your brand profile, skip unverified intermediaries, and lock in your stall with safe transactional reservations.
               </p>
-              <ul className="space-y-2 text-xs text-slate-300">
+              <ul className="space-y-2 text-xs text-[#202A35]">
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  Transparent prices and clear stall specifications
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
+                  <CheckCircle2 className="w-4 h-4 text-[#287653]" />
                   Pay only after the organizer reviews and approves your brand
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-sky-400" />
-                  Download confirmed digital booking passes and receipts
+                  <CheckCircle2 className="w-4 h-4 text-[#287653]" />
+                  Download official digital entry vouchers with verified QR references
                 </li>
               </ul>
             </div>
 
             <Link
               href="/events"
-              className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-bold text-sm bg-sky-500 hover:bg-sky-400 text-white transition-colors shadow-lg shadow-sky-500/20"
+              className="inline-flex items-center justify-center px-5 py-3 rounded-lg font-bold text-xs bg-[#202A35] hover:bg-[#141A22] text-white transition-colors"
             >
-              Browse Open Stall Categories
+              Browse Open Stalls
               <ArrowRight className="w-4 h-4 ml-1.5" />
             </Link>
           </div>

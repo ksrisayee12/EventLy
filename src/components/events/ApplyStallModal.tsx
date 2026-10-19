@@ -40,7 +40,7 @@ export function ApplyStallModal({
           stallTypeId: selectedStallId,
           quantity: Number(quantity),
           message,
-          vendorId: '22222222-2222-2222-2222-222222222222', // Demo artisan vendor Rohan Verma
+          vendorId: '22222222-2222-2222-2222-222222222222',
         }),
       });
 
@@ -53,7 +53,7 @@ export function ApplyStallModal({
       setSuccess(true);
       setTimeout(() => {
         router.push('/vendor/applications');
-      }, 1800);
+      }, 1600);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -69,76 +69,74 @@ export function ApplyStallModal({
           setSuccess(false);
           setError(null);
         }}
-        className="w-full sm:w-auto px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+        className="w-full py-3.5 bg-[#B95335] hover:bg-[#98432B] text-white font-bold text-sm rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
       >
         <Store className="w-4 h-4" />
-        Apply for a Stall Space
+        Apply for Stall Space
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative space-y-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#202A35]/60 backdrop-blur-xs">
+          <div className="bg-[#FFFFFF] rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-curated-lg border border-[#E5E0D7] relative space-y-5">
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-600 rounded-lg"
+              className="absolute top-5 right-5 p-1.5 text-[#747B80] hover:text-[#202A35] rounded-md transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
 
             {success ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-10 h-10" />
+              <div className="text-center py-6 space-y-3">
+                <div className="w-12 h-12 rounded-full bg-[#EFEAE1] text-[#287653] flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900">Application Submitted!</h3>
-                <p className="text-xs text-slate-600 leading-relaxed max-w-sm mx-auto">
-                  The organizer has received your application. Once approved, a 30-minute hold will reserve your stall for payment.
+                <h3 className="text-lg font-bold text-[#202A35]">Application Submitted!</h3>
+                <p className="text-xs text-[#747B80] leading-relaxed max-w-sm mx-auto">
+                  The organizer has received your brand profile. Upon approval, an atomic 30-minute hold will reserve your space for payment.
                 </p>
-                <div className="text-xs font-semibold text-indigo-600">
+                <div className="text-xs font-semibold text-[#B95335]">
                   Redirecting to your application tracker...
                 </div>
               </div>
             ) : (
               <>
-                <div>
-                  <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">
-                    Application Form
+                <div className="border-b border-[#E5E0D7] pb-3">
+                  <span className="text-[11px] font-bold text-[#64786B] uppercase tracking-wider">
+                    Application Details
                   </span>
-                  <h3 className="text-xl font-bold text-slate-900">Apply for Stall Space</h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    No upfront payment required. You will only pay once the organizer reviews and approves your brand.
+                  <h3 className="text-lg font-bold text-[#202A35] mt-0.5">Apply for Stall Space</h3>
+                  <p className="text-xs text-[#747B80]">
+                    No upfront payment required. You will only pay once approved by the organizer.
                   </p>
                 </div>
 
                 {error && (
-                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-start gap-2">
+                  <div className="p-3 bg-[#F7F5F0] border border-[#B33A3A] text-[#B33A3A] text-xs rounded-lg flex items-start gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                     <span>{error}</span>
                   </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Select Stall Type */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-semibold text-[#202A35] mb-1">
                       Choose Stall Category
                     </label>
                     <select
                       value={selectedStallId}
                       onChange={(e) => setSelectedStallId(e.target.value)}
-                      className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs font-medium text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
                     >
                       {stallTypes.map((stall) => (
                         <option key={stall.id} value={stall.id}>
-                          {stall.name} ({formatPaiseToINR(stall.price_paise)}) - {stall.available_capacity ?? stall.total_capacity} slots left
+                          {stall.name} ({formatPaiseToINR(stall.price_paise)}) - {stall.available_capacity ?? stall.total_capacity} stalls available
                         </option>
                       ))}
                     </select>
                   </div>
 
-                  {/* Quantity */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-semibold text-[#202A35] mb-1">
                       Number of Stalls
                     </label>
                     <div className="flex items-center gap-3">
@@ -148,17 +146,16 @@ export function ApplyStallModal({
                         max={selectedStall?.available_capacity || 5}
                         value={quantity}
                         onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                        className="w-28 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-semibold text-center focus:ring-2 focus:ring-indigo-500"
+                        className="w-24 px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs font-bold text-center text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
                       />
-                      <span className="text-xs text-slate-500">
-                        Total amount upon approval: <strong className="text-indigo-700">{formatPaiseToINR(totalPaise)}</strong>
+                      <span className="text-xs text-[#747B80]">
+                        Payable upon approval: <strong className="text-[#202A35]">{formatPaiseToINR(totalPaise)}</strong>
                       </span>
                     </div>
                   </div>
 
-                  {/* Brand & Products Description */}
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-semibold text-[#202A35] mb-1">
                       Products to Exhibit & Brand Details
                     </label>
                     <textarea
@@ -166,8 +163,8 @@ export function ApplyStallModal({
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Describe what items you plan to sell (e.g. Handmade ceramics, artisan clothing, packaged spices)..."
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Describe items you plan to sell (e.g. handmade ceramics, apparel, packaged gourmet coffee)..."
+                      className="w-full px-3 py-2 bg-[#F7F5F0] border border-[#E5E0D7] rounded-lg text-xs text-[#202A35] focus:outline-none focus:ring-1 focus:ring-[#B95335]"
                     />
                   </div>
 
@@ -175,7 +172,7 @@ export function ApplyStallModal({
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                      className="w-full py-3 bg-[#B95335] hover:bg-[#98432B] text-white font-bold text-xs rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                     >
                       {loading ? (
                         <>
