@@ -147,6 +147,29 @@ let inMemoryEvents: EventItem[] = [
     published_at: new Date().toISOString(),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
+  },
+  {
+    id: '33333333-3333-3333-3333-333333333336',
+    organizer_id: '11111111-1111-1111-1111-111111111111',
+    title: 'Goa Sunset Beach Flea & Indie Pop-Up',
+    description: 'Beachfront open-air flea market featuring coastal boho apparel, shell jewelry, indie vinyl records, and tropical craft mocktails.',
+    event_category: 'Flea Market & Craft Expo',
+    venue_name: 'Anjuna Flea Grounds, South Anjuna',
+    address: 'Anjuna Beach Coastal Road',
+    city: 'Goa',
+    state: 'Goa',
+    country: 'India',
+    starts_at: new Date(Date.now() + 35 * 24 * 60 * 60 * 1000).toISOString(),
+    ends_at: new Date(Date.now() + 37 * 24 * 60 * 60 * 1000).toISOString(),
+    expected_footfall: 6200,
+    terms_text: 'Eco-friendly biodegradable packaging only. Sound curfew strictly at 10:00 PM as per coastal regulation zone norms.',
+    review_status: 'pending_review',
+    publication_status: 'unpublished',
+    rejection_reason: null,
+    submitted_at: new Date(Date.now() - 4 * 3600 * 1000).toISOString(),
+    published_at: null,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   }
 ];
 
@@ -198,6 +221,18 @@ let inMemoryStallTypes: EventStallType[] = [
     total_capacity: 25,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
+  },
+  {
+    id: '44444444-4444-4444-4444-444444444445',
+    event_id: '33333333-3333-3333-3333-333333333336',
+    name: 'Beachside Artisan Gazebo (10x10 ft)',
+    description: 'Weatherproof sea-breeze shaded canopy, spotlights, and wooden display shelving.',
+    vendor_category: 'Handmade / Lifestyle',
+    price_paise: 2000000, // ₹20,000
+    currency: 'INR',
+    total_capacity: 20,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   }
 ];
 
@@ -211,9 +246,37 @@ let inMemoryApplications: Application[] = [
     message: 'We will be displaying our new stoneware mug collection and glazed terracotta planters.',
     status: 'approved',
     decision_by: '00000000-0000-0000-0000-000000000002',
-    decision_at: new Date().toISOString(),
+    decision_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
     decision_reason: 'Great product fit for the artisan flea market.',
     created_at: new Date(Date.now() - 3600000).toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '55555555-5555-5555-5555-555555555552',
+    event_id: '33333333-3333-3333-3333-333333333334',
+    vendor_id: '22222222-2222-2222-2222-222222222222',
+    stall_type_id: '44444444-4444-4444-4444-444444444443',
+    quantity: 1,
+    message: 'We will be setting up a live artisanal coffee and handmade mug pairing booth.',
+    status: 'pending',
+    decision_by: null,
+    decision_at: null,
+    decision_reason: null,
+    created_at: new Date(Date.now() - 1200000).toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: '55555555-5555-5555-5555-555555555553',
+    event_id: '33333333-3333-3333-3333-333333333335',
+    vendor_id: '22222222-2222-2222-2222-222222222222',
+    stall_type_id: '44444444-4444-4444-4444-444444444444',
+    quantity: 1,
+    message: 'Displaying hand-printed organic indigo textiles and artisanal brass pottery.',
+    status: 'approved',
+    decision_by: '00000000-0000-0000-0000-000000000002',
+    decision_at: new Date(Date.now() - 2 * 86400000).toISOString(),
+    decision_reason: 'Excellent match for the sustainable fashion expo.',
+    created_at: new Date(Date.now() - 3 * 86400000).toISOString(),
     updated_at: new Date().toISOString(),
   }
 ];
@@ -235,11 +298,94 @@ let inMemoryBookings: Booking[] = [
     cancelled_at: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
+  },
+  {
+    id: '66666666-6666-6666-6666-666666666662',
+    application_id: '55555555-5555-5555-5555-555555555553',
+    vendor_id: '22222222-2222-2222-2222-222222222222',
+    event_id: '33333333-3333-3333-3333-333333333335',
+    stall_type_id: '44444444-4444-4444-4444-444444444444',
+    quantity: 1,
+    unit_price_paise: 1500000,
+    total_amount_paise: 1500000,
+    currency: 'INR',
+    status: 'confirmed',
+    hold_expires_at: new Date(Date.now() - 86400000).toISOString(),
+    confirmed_at: new Date(Date.now() - 86400000).toISOString(),
+    cancelled_at: null,
+    created_at: new Date(Date.now() - 2 * 86400000).toISOString(),
+    updated_at: new Date(Date.now() - 86400000).toISOString(),
+  },
+  {
+    id: '66666666-6666-6666-6666-666666666663',
+    application_id: '55555555-5555-5555-5555-555555555551',
+    vendor_id: '22222222-2222-2222-2222-222222222222',
+    event_id: '33333333-3333-3333-3333-333333333333',
+    stall_type_id: '44444444-4444-4444-4444-444444444441',
+    quantity: 1,
+    unit_price_paise: 1200000,
+    total_amount_paise: 1200000,
+    currency: 'INR',
+    status: 'confirmed',
+    hold_expires_at: new Date(Date.now() - 10 * 86400000).toISOString(),
+    confirmed_at: new Date(Date.now() - 10 * 86400000).toISOString(),
+    cancelled_at: null,
+    created_at: new Date(Date.now() - 11 * 86400000).toISOString(),
+    updated_at: new Date().toISOString(),
   }
 ];
 
-let inMemoryPayments: Payment[] = [];
-let inMemoryRefunds: RefundRequest[] = [];
+let inMemoryPayments: Payment[] = [
+  {
+    id: 'pay_sim_confirmed_001',
+    booking_id: '66666666-6666-6666-6666-666666666662',
+    provider: 'razorpay',
+    provider_order_id: 'order_sim_delhi_exp',
+    provider_payment_id: 'pay_sim_9823748234',
+    amount_paise: 1500000,
+    currency: 'INR',
+    status: 'succeeded',
+    idempotency_key: 'pay_sim_9823748234',
+    paid_at: new Date(Date.now() - 86400000).toISOString(),
+    failure_reason: null,
+    created_at: new Date(Date.now() - 86400000).toISOString(),
+    updated_at: new Date(Date.now() - 86400000).toISOString(),
+  },
+  {
+    id: 'pay_sim_confirmed_002',
+    booking_id: '66666666-6666-6666-6666-666666666663',
+    provider: 'razorpay',
+    provider_order_id: 'order_sim_bengaluru_ref',
+    provider_payment_id: 'pay_sim_1192837465',
+    amount_paise: 1200000,
+    currency: 'INR',
+    status: 'succeeded',
+    idempotency_key: 'pay_sim_1192837465',
+    paid_at: new Date(Date.now() - 10 * 86400000).toISOString(),
+    failure_reason: null,
+    created_at: new Date(Date.now() - 10 * 86400000).toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+];
+
+let inMemoryRefunds: RefundRequest[] = [
+  {
+    id: '88888888-8888-8888-8888-888888888881',
+    booking_id: '66666666-6666-6666-6666-666666666663',
+    payment_id: 'pay_sim_confirmed_002',
+    requested_by: '00000000-0000-0000-0000-000000000003',
+    reason: 'Emergency artisan travel conflict - sudden unavoidable logistics delay prevents traveling to Bengaluru on-site.',
+    status: 'requested',
+    amount_paise: 1200000,
+    reviewed_by: null,
+    reviewed_at: null,
+    rejection_reason: null,
+    provider_refund_id: null,
+    created_at: new Date(Date.now() - 6 * 3600 * 1000).toISOString(),
+    updated_at: new Date(Date.now() - 6 * 3600 * 1000).toISOString(),
+  }
+];
+
 let inMemoryNotifications: NotificationItem[] = [
   {
     id: '77777777-7777-7777-7777-777777777771',
@@ -252,6 +398,18 @@ let inMemoryNotifications: NotificationItem[] = [
     read: false,
     delivery_status: 'in_app',
     created_at: new Date().toISOString(),
+  },
+  {
+    id: '77777777-7777-7777-7777-777777777772',
+    recipient_id: '00000000-0000-0000-0000-000000000003',
+    title: 'Pass Issued - Delhi Winter Handloom Expo',
+    message: 'Payment verified. Your official Digital Stall Pass #66666666-6666 is ready for presentation during setup.',
+    type: 'booking_confirmed',
+    related_entity_type: 'booking',
+    related_entity_id: '66666666-6666-6666-6666-666666666662',
+    read: true,
+    delivery_status: 'in_app',
+    created_at: new Date(Date.now() - 86400000).toISOString(),
   }
 ];
 let inMemoryAuditLogs: AdminAuditLog[] = [];
